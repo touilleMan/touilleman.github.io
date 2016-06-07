@@ -1,0 +1,17 @@
+language: python
+python: 2.7
+env:
+  secure: "CjG9FnBBVswhVkRW3A/FXoN1ba7hVSOCF7M74TUxeSpHqcEqus2QvJOu8T66Ll7ADr3Talz2hzcv3sMBLDHvkggRyTdnLrypvsWVKN7n7kyZY2av3pxNFKBTfPJ0mSkz9ph7vLGRnLJnM1rM7ixFFEYPvCtpGDlZDWQaU/4V/WXCSOJ5Vm77PPNGI4hZuwD9OJWlUBbLQz1fLQiTsqgktuD0BVuL1mYvZZ2pVI1Bla4ZoPoAkt0owYFrky0y1o4EhUvefC6gsWU2iN2RtNyAcSjQ3oQkmwDiD+MHf8y+vY5JE0rMx754YMNyC0Rg2zyMpNSc/0RQcAqDJHLusmjikj0tgC1L87UZBK8nE6DG+0jwj/wLyjLNduDle7Nut4bwKoQbAzbDgcca41bu4jbKX8TmICycL3teiwrGxVwrOI7vGXIp+H/GLNH6DAugHzSkcRB2nkSnpJovdzEkYkIun2nJHjyyNDRCwNT/piEhExSMgVIbG2F5ReEzw54mRP7aqpsFTqdRpf9QMRjvokOtixBvP627KDMS8lCw2LmGFioGLmALhdzpJsCXScB9Y1ZXmlL+M6aAvEXT3miPW1LA3CXTPtdPBWNoWDKBz1910uKj+6gZFJViTbHNaSWenIHEsg2RvFsiN719VZePMFzaU0yWl/hetOjiuxGfA+kQq10="
+cache:
+  directories:
+  - "$HOME/.cache/pip"
+  - "$HOME/.cache/lektor/builds"
+before_install: cd touilleMan
+install: pip install Lektor
+script: lektor build
+before_deploy: npm install netlify-cli -g
+deploy:
+  provider: script
+  script: netlify -t $NETLIFY_TOKEN deploy -s 581d06c3-394a-4e8a-8191-8a7d794c2a50 -p `lektor project-info --output-path`
+  on:
+    branch: master

@@ -1,0 +1,5 @@
+[project]
+name = touilleMan
+
+[servers.ghpages]
+target = ghpages+https://username/repository
