@@ -1,7 +1,23 @@
-title: About this Website
+title: About
 ---
 body:
 
-This is a website that was made with the Lektor quickstart.
+I'm Emmanuel Leblond, engineer at [Scille](http://scille.eu) working most of the time in Paris, France.
 
-And it does not contain a lot of information.
+I have a C & embedded systems background but fall in love with Python since then.
+
+# A bit of my work
+
+Most of my work involve Python and open-source, among patches and PRs I've ported projects to Python 3 [authomatic](http://peterhudec.github.io/authomatic) and [diesel](https://github.com/dieseldev/diesel).
+
+I enjoy mongoDB too, so I created a [mongopatcher](https://github.com/touilleMan/mongopatcher), a tool for database schema upgrade, and [umongo](https://github.com/Scille/umongo), an ODM working with both async and sync mongoDB drivers.
+I'm also part of the [mongoengine](https://github.com/MongoEngine/mongoengine) team.
+
+Finally, I also help maintaining a C ini parser library, the well-named [iniparser](https://github.com/ndevilla/iniparser).
+
+# Contact me
+
+My email is `<firstname>`.`<lastname>`@gmail.com (if your not sure, my first name starts with an "E")
+
+You can also see me on github as [@touilleMan](https://github.com/touilleMan)
+
