@@ -1,5 +1,5 @@
 [project]
 name = touilleMan
 
-[servers.ghpages]
-target = ghpages+https://username/repository
+[packages]
+lektor-disqus-comments = 0.1
