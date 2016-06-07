@@ -6,7 +6,7 @@ cache:
   directories:
   - "$HOME/.cache/pip"
   - "$HOME/.cache/lektor/builds"
-before_install: cd touilleMan
+before_install: cd touilleman.xyz
 install: pip install Lektor
 script: lektor build
 before_deploy: npm install netlify-cli -g
