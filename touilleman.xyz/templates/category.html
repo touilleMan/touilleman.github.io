@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% from "macros/blog.html" import render_category_nav,
+   render_project_list %}
+{% block title %}Category {{ this.name }}{% endblock %}
+{% block body %}
+  <h1>Category {{ this.name }}</h1>
+
+  {% for category in site.query('/categories') %}
+    <a{% if category._id == this._id %} class="active"{% endif
+      %} href="{{ category|url }}">{{ category.name }}</a>
+  {% endfor %}
+  <br><br> <!-- Welcome to 1999 -->
+  <ul>
+  {% for child in this.children %}
+    <li>
+        <a href="{{ child.path|url }}">{{ child._data.title }}</a> ({{ child._data.pub_date }})
+    </li>
+  {% endfor %}
+  </ul>
+{% endblock %}

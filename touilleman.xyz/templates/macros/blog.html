@@ -14,6 +14,12 @@
     {% else %}
       {{ post.author }}
     {% endif %}
+    {% if post.categories %}
+    |
+    {% endif %}
+    {% for category in post.categories %}
+      <a href="{{ site.get('/categories/' + category)|url }}">{{ category }}</a>
+    {% endfor %}
   </p>
   {{ post.body }}
   </div>
