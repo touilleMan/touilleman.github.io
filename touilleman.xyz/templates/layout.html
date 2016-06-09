@@ -1,27 +1,37 @@
 <!doctype html>
 <meta charset="utf-8">
 <link rel="stylesheet" href="{{ '/static/style.css'|url }}">
+<link rel="stylesheet" href="{{ get_pygments_stylesheet()|url }}">
 <title>{% block title %}Welcome{% endblock %} — touilleMan</title>
 <body>
-  <header>
-    <h1>touilleMan</h1>
-    <nav>
-      <ul class="nav navbar-nav">
-        <li{% if this._path == '/' %} class="active"{% endif
-          %}><a href="{{ '/'|url }}">Welcome</a></li>
-        {% for href, title in [
-          ['/blog', 'Blog'],
-          ['/projects', 'Projects'],
-          ['/about', 'About']
-        ] %}
-          <li{% if this.is_child_of(href) %} class="active"{% endif
-            %}><a href="{{ href|url }}">{{ title }}</a></li>
-        {% endfor %}
-      </ul>
-    </nav>
-  </header>
-  <div class="page">
-    {% block body %}{% endblock %}
+  <div id="wrap">
+    <div id="container">
+      <div class="entry">
+        {% block body %}{% endblock %}
+      </div>
+    </div>
+    <div id="sidebar">
+      <header>
+        <h1>
+          <a href="/">
+            <img src="/static/touilleman.jpeg">
+          </a>
+        </h1>
+      </header>
+      <nav>
+        <ul class="nav navbar-nav">
+          <li{% if this._path == '/blog' %} class="active"{% endif
+            %}><a href="{{ '/blog'|url }}">Blog</a></li>
+          {% for href, title in [
+            ['/blog/feed/index.xml', 'Feed'],
+            ['/about', 'About']
+          ] %}
+            <li{% if this.is_child_of(href) %} class="active"{% endif
+              %}><a href="{{ href|url }}">{{ title }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
   </div>
   <footer>
     &copy; Copyright 2016 by Emmanuel Leblond.
