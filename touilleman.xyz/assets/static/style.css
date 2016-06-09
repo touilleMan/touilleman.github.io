@@ -33,14 +33,14 @@ ul.sub-menu, ul.children { margin:0px 10px 0px 0px; }
 
 .post { margin:0px 0px 30px 0px; padding:0px 0px 30px 0px; border-bottom:1px dotted #C8C8C8; }
 .post-edit-link { clear:both; }
-.meta { margin:10px; padding:15px; background:#EAEAEA; clear:both; }
+.meta { margin:10px; padding:1px; background:#EAEAEA; clear:both; font-size: 12px; }
 .meta span { display:block; clear:left; }
 .thumbnail { margin:0px; padding:0px; }
 .thumbnail img { float:right; }
 
 .entry { font-size: 14px; line-height: 20px; }
 .entry h2, h3, h4, h5 { margin:30px 0px 10px 0px; }
-.entry img { display:block; border:1px solid #BDBDBD !important; }
+/*.entry img { display:block; border:1px solid #BDBDBD !important; }*/
 .entry img.wp-smiley { border:0px !important; }
 .entry a img:hover { background-color:transparent; border:1px solid #E5E5E5 !important; }
 .entry .aligncenter, div.aligncenter {  margin:10px auto; }
@@ -108,3 +108,7 @@ footer {
 .active {
     text-decoration: underline;
 }
+
+/* Patch highlight */
+.highlight { background-color: #49483e; }
+code { background-color: #49483e; color: #f8f8f2 }
