@@ -23,7 +23,7 @@ input:hover, textarea:hover, blockquote:hover { background:#E5E5E5; }
 
 #wrap { margin:0px auto; text-align:left; font-size: 13px; line-height: 1.4; width:850px; padding-bottom:60px; }
 #container { float:right; width:560px;}
-#sidebar { overflow:hidden; clear:left; text-align:right; width:250px; height:auto; padding:0px 15px 0px 0px; border-right:1px dotted #C8C8C8; }
+#sidebar { float:left; overflow:hidden; clear:left; text-align:right; width:250px; height:auto; padding:0px 15px 0px 0px; border-right:1px dotted #C8C8C8; }
 #sidebar li { list-style-type:none; }
 #sidebar > li { margin:20px 0px; }
 #sidebar h1 { border-bottom:1px dotted #C8C8C8; }
@@ -94,16 +94,15 @@ input#submit { font-weight:bold; }
 input#s { width:70%; height:auto; margin:5px 0px; }
 
 /*#footer { text-align:center; clear:both; }*/
-#footer div { margin:30px 0px 0px 0px; padding:30px 0px 0px 0px; border-top:1px dotted #C8C8C8; position:absolute; bottom:0;}
-#footer li { list-style-type:none; }
-#footer .widget_tag_cloud h2 { display:none; }
-#footer {
+footer div { float:center; margin:30px 0px 0px 0px; padding:30px 0px 0px 0px; border-top:1px dotted #C8C8C8; }
+footer li { list-style-type:none; }
+footer .widget_tag_cloud h2 { display:none; }
+footer {
     clear: both;
     text-align: center;
     position: relative;
-    z-index: 10;
-    height: 3em;
-    margin-top: -3em;
+    height: 30px;
+    padding: 3em;
 }
 
 .active {
