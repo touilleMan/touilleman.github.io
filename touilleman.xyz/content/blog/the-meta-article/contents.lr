@@ -1,14 +1,14 @@
-title: The meta article
+title: The meta article - Warmup with lektor
 ---
 author: Emmanuel Leblond
 ---
 pub_date: 2016-06-09
 ---
-categories: misc
+categories: python, misc
 ---
 body:
 
-This blog is aim at writting about my experience in programming, so what better
+This blog aims at writting about my experiences in programming, so what better
 start but to talk about my experience building this blog !
 
 First and foremost, _[show me the code](https://github.com/touilleMan/touilleman.xyz)_.
