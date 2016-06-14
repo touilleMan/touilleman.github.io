@@ -1,44 +1,78 @@
-<!doctype html>
-<meta charset="utf-8">
-<link rel="stylesheet" href="{{ '/static/style.css'|url }}">
-<link rel="stylesheet" href="{{ get_pygments_stylesheet()|url }}">
-<title>touilleMan</title>
-<body>
-  <div class="ga-script">{{ generate_google_analytics() }}</div>
-  <div id="wrap">
-    <div id="container">
-      <div class="entry">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"> -->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ '/static/style.css'|url }}">
+    <link rel="stylesheet" href="{{ get_pygments_stylesheet()|url }}">
+
+  </head>
+  <title>{% block title %}{% endblock %}</title>
+  <body>
+    <div class="container">
+      <div class="col-md-2 text-center" id="sidebar">
+          <div class="profile">
+            <div class="center-block" id="head" style="width: 100px;">
+              <a href="/"><img src="/static/touilleman.jpeg"></a>
+            </div>
+            <div class="h3">touilleMan</div>
+          </div>
+          <div class="menu">
+            <div {% if this._path == '/blog' %} class="active"{% endif %}>
+              <a href="{{ '/blog'|url }}">Blog</a>
+            </div>
+            <div class="">
+              <a href="{{ '/blog/feed/index.xml'|url }}">Feed</a>
+            </div>
+            <div {% if this._path == '/about' %} class="active"{% endif %}>
+              <a href="{{ '/about'|url }}">About</a>
+            </div>
+          </div>
+      </div>
+      <!-- Content here -->
+      <div class="col-md-9" id="content">
         {% block body %}{% endblock %}
       </div>
     </div>
-    <div id="sidebar">
-      <header>
-        <h1>
-          <a href="/">
-            <img src="/static/touilleman.jpeg">
-          </a>
-        </h1>
-      </header>
-      <nav>
-        <ul class="nav navbar-nav">
-          <li{% if this._path == '/blog' %} class="active"{% endif
-            %}><a href="{{ '/blog'|url }}">Blog</a></li>
-          {% for href, title in [
-            ['/blog/feed/index.xml', 'Feed'],
-            ['/about', 'About']
-          ] %}
-            <li{% if this.is_child_of(href) %} class="active"{% endif
-              %}><a href="{{ href|url }}">{{ title }}</a></li>
-          {% endfor %}
-        </ul>
-      </nav>
-    </div>
-  </div>
-  <footer>
-    <div>
-    &copy; Copyright 2016 Emmanuel Leblond, made with
-    <a href="https://www.getlektor.com">lektor</a> and
-    <a href="https://wordpress.org/themes/monospace/">Monospace</a>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="col-md-6 col-md-offset-3">
+        &copy; Copyright 2016 Emmanuel Leblond, made with
+        <a href="https://www.getlektor.com">lektor</a> and
+        <a href="https://getbootstrap.com">Bootstrap</a>
+      </div>
     </div>
   </footer>
-</body>
+
+
+    <!-- Google analytics -->
+    <div class="ga-script">{{ generate_google_analytics() }}</div>
+    <!-- Ugly fix to add bootstrap style to img -->
+    <script type="text/javascript">
+      (function() {
+        /* img */
+        var elms = document.getElementsByTagName("img");
+        for(var i = 0; i < elms.length; i++){
+           elms[i].setAttribute('class', 'img-responsive')
+        }
+        /* post's meta */
+        var elms = document.getElementsByClassName("meta");
+        for(var i = 0; i < elms.length; i++){
+           console.log(elms[i], i)
+           elms[i].setAttribute('class', 'meta well well-sm')
+        }
+      })();
+    </script>
+  </body>
+</html>

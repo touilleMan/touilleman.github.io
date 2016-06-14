@@ -1,4 +1,4 @@
-title: About
+title: touilleMan - About
 ---
 body:
 
@@ -6,7 +6,7 @@ I'm Emmanuel Leblond, engineer at [Scille](http://scille.eu) working most of the
 
 I have a C & embedded systems background but fall in love with Python since then.
 
-# A bit of my work
+### A bit of my work
 
 Most of my work involve Python and open-source, among patches and PRs I've ported projects to Python 3: [authomatic](http://peterhudec.github.io/authomatic) and [diesel](https://github.com/dieseldev/diesel).
 
@@ -15,7 +15,7 @@ Beside, I'm part of the [mongoengine](https://github.com/MongoEngine/mongoengine
 
 Finally, I help maintaining a C ini parser library, the well-named [iniparser](https://github.com/ndevilla/iniparser).
 
-# Contact me
+### Contact me
 
 My email is &lt;firstname&gt;.&lt;lastname&gt;@gmail.com (if you're not sure, my first name starts with an "E")
 

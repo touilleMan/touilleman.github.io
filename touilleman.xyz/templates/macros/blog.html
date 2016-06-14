@@ -14,11 +14,9 @@
     {% else %}
       {{ post.author }}
     {% endif %}
-    {% if post.categories %}
-    |
-    {% endif %}
     {% for category in post.categories %}
-      <a href="{{ site.get('/categories/' + category)|url }}">{{ category }}</a>
+      <a href="{{ site.get('/categories/' + category)|url }}">
+      <span class="label label-default">{{ category }}</span></a>
     {% endfor %}
   </p>
   {{ post.body }}
