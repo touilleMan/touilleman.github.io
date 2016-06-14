@@ -17,7 +17,7 @@ First a word about the dead from it [pypi page](https://pypi.python.org/pypi/die
 
 [Announced in 2010](https://www.reddit.com/r/programming/comments/9ndev/announcing_diesel_async_io_in_python_for_the_rest/?),
 the project was well received (+500 stars on github) but eventually failed
-to make it hole in the crowded world of Python async framework.
+to make it hole in the crowded world of Python async frameworks.
 
 In late 2013, [Bump](http://bu.mp/), the company that developed diesel for it
 own needs, was bought by Google, it products discontinued and team merged.
@@ -36,7 +36,7 @@ it ecosystem (let aside the extensions making use of the network which
 blocking nature couldn't play nice in an async framework).
 
 The drawback, however, was diesel was Python 2 only and, as I stated earlier,
-it community was spare if not vanished.
+it community was sparse if not vanished.
 
 Given I was having some free time (that's the reason I start researching about
 async frameworks in the first place) I choose the hard way: porting the project
@@ -52,8 +52,8 @@ and shared my hopes on the project. So I started working on the port, and
 a month later the [work was done](https://github.com/dieseldev/diesel/pull/100).
 
 However my attempt to shake the sleeping giant turned short: too few free time,
-missing motivation and Diesel4 didn't get released on pypi, in fact it didn't
-even make it way to the master :'-(
+missing motivation and Diesel4 (the new major version with Python 3 support)
+didn't get released on pypi, in fact it didn't even make it way to the master :'-(
 
 Put this way, this seems harsh: I worked hard and no-one will ever use my work
 (not even me !). But in fact it's all the opposite !
@@ -70,7 +70,7 @@ and [hack into an implementation of it](https://github.com/dieseldev/diesel/blob
 to discover [greenlet](https://greenlet.readthedocs.io/en/latest/),
 to play with the [redis](https://github.com/dieseldev/diesel/blob/diesel4/diesel/protocols/redis.py)
 and [mongodb](https://github.com/dieseldev/diesel/blob/diesel4/diesel/protocols/mongodb.py)
-protocols, and to discover a someone finally did something to replace the
+protocols, and to discover someone finally did something to replace the
 [awful logging module](https://github.com/wearpants/twiggy).
 
 With [asyncio](https://docs.python.org/3/library/asyncio.html) raising as
