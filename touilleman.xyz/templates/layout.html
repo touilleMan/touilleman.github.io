@@ -58,7 +58,10 @@
 
     <!-- Google analytics -->
     <div class="ga-script">{{ generate_google_analytics() }}</div>
-    <!-- Ugly fix to add bootstrap style to img -->
+
+    <!-- Hello visitor ! -->
+    <!-- This ugly fix is used to overload CSS without using SASS/LESS. -->
+    <!-- If you know a better way, please drop me a mail ;-) -->
     <script type="text/javascript">
       (function() {
         /* img */
@@ -69,7 +72,6 @@
         /* post's meta */
         var elms = document.getElementsByClassName("meta");
         for(var i = 0; i < elms.length; i++){
-           console.log(elms[i], i)
            elms[i].setAttribute('class', 'meta well well-sm')
         }
       })();
