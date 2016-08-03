@@ -1,0 +1,73 @@
+==================================================================
+https://keybase.io/touilleman
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://touilleman.xyz
+  * I am touilleman (https://keybase.io/touilleman) on keybase.
+  * I have a public key with fingerprint 08B3 DE7C 9373 8156 219E  CA52 C360 860E 645E FFC0
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "01019441b326d3ec78b8e7687ed207d107b9c9393229f1c954b401c186dab90eb90c0a",
+            "fingerprint": "08b3de7c93738156219eca52c360860e645effc0",
+            "host": "keybase.io",
+            "key_id": "c360860e645effc0",
+            "kid": "01019441b326d3ec78b8e7687ed207d107b9c9393229f1c954b401c186dab90eb90c0a",
+            "uid": "9ea11e95f860f9d9a92a2e1e39d3a119",
+            "username": "touilleman"
+        },
+        "service": {
+            "hostname": "touilleman.xyz",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1470225704,
+    "expire_in": 157680000,
+    "prev": "eea487a1430f7f0ebad4452f26c22dd18eb5fbf7c4589dc410c6cdc655b8baba",
+    "seqno": 3,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v1
+
+owGtUm1QVGUU3l0JjA+X0sQxJLxImq3L/dx7L6sg2TSj0GDDjpTmLvfjvXAF7oXd
+C7FLTMAUgdCIY80YanxMLqlouZAtupkKP3IQKhT8GFCaEoTEGtQiBobuZepX/eyd
+eeed95znec5zzpz6iEU6g74rq2oJb5+/oO8ZZ3WZzcOmUoiVeTeUWArlgoUH5PHA
+pThyRR5KhGAERmgcR1gMtfAY4EiKpQBpoUjAozDJIzDJ0hyN0RiK0gLC0QTO4jDC
+IZSFZ1gaBurlYAYyQYIoZQNngVOUFE2WYjEekCqTxCiEsKAIDTiGQDnMAlMWGFhw
+AggCB6vEHNmlMVRzLOMCZlFWY+rHsWDvP/D/s++iBTkaMAgCaEJQiwk0TzM0yqAA
+ARjNY2qG1oAu4JSYfKCiFblIzMsD+YwElZkgNV4sckAbrdbLvzDmErdH5Rc4ZUXm
+5Dw1l6MoBYkaVXEXaNi3AOv4W8XBihKvjlIlFAOnS5QlKBFRkZwiarIITsIoSpAw
+boJASYHoBA5RQxBq67B6tDKgWJUEgMF3USSD4BgskILaMMPjOIEKqIVDUZ5HKMAS
+AiuQHE5QNM/hCMxZOJ6zEARLsQyrjcYFCiUZSsRUn0y2qukSsyVGKXICqCy0xhAd
+pNMbdMFPGLQl04U+GfnP5nXbjXPLPlpyaGjs+YGkXYND+9qU5oHTyetuX2oCIfC1
+5Ii28Fr/xWrTiUm9z3+4ZKD022tefPXE64tPffJTxJYHZve+npxYY8Zy62TMTv8r
+j5H49vd91Ndb3VLshZ7Bvivr60fYy592TD2F2JPnzpyr+PkbH7Z5Oihc+rPfY7B+
+fjvwQlj4m1MHI0+tdK0uHH44HqO7VRG79nJlpr1msDeovnvQN9K4u90zFWBfbavL
+joiOanr02soDB7YG9Z5/1pn1dPwq0vNja2HDtiT20qxv+fpRuH3x3YSuPdEP71zP
+knccuTX3u/vRuVXhTO1neuuG3zZVdr47uPNEQkhPn5K64sxXxuqkii+NXSlXva03
+9MusIYWHW2xJ0f3Pxc2/UXe1N3hpeHN8482a/Uv9z9gzvXf9KRnxY56y6fM3zqZ9
+IZysSr0ojN3/0NAR+N6nmxcDremijB77Jdb2Mlm5qWVbnXVgiHCvGx0PfPCxfaI2
+odw1XJ7+YLsZSh9+zxS3xr+x8yR6Ou6H2d2Eq3jL0flfX7RVr8hweO68s6NpT+TM
+wPFG89sNYddLudTJtWWZfVWPN86skeJyoya2x531QunM/u8qbSb90Wnb/YYSptRG
+Lbq3ufpm6qjbGJOS1oHNBrdsMDWY72VmH7kyXpsWGj13PHLmpc7ukf4/mPQo06HJ
+hIOVWNixvW3eYGt5/l8=
+=xvQZ
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/touilleman
+
+==================================================================
