@@ -1,12 +1,12 @@
 {% extends "layout.html" %}
-{% from "macros/blog.html" import render_category_nav %}
 {% block title %}Categories{% endblock %}
 {% block body %}
   <h1>Categories</h1>
-  <ul>
+
   {% for category in site.query('/categories') %}
-    <li{% if category._id == this._id %} class="active"{% endif
-      %}><a href="{{ category|url }}">{{ category.name }}</a>
+    <a href="{{ category|url }}">
+    <span class="label label-default">
+    {{ category.name }}</span></a>
   {% endfor %}
-  </ul>
+
 {% endblock %}

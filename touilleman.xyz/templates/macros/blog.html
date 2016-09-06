@@ -22,3 +22,23 @@
   {{ post.body }}
   </div>
 {% endmacro %}
+
+{% macro render_blog_post_extract(post) %}
+  <div class="blog-post">
+    <h2><a href="{{ post|url }}">{{ post.title }}</a></h2>
+  <p class="meta">
+    {{ post.pub_date }}
+     - 
+    {% if post.twitter_handle %}
+      <a href="https://twitter.com/{{ post.twitter_handle
+        }}">{{ post.author or post.twitter_handle }}</a>
+    {% else %}
+      {{ post.author }}
+    {% endif %}
+    {% for category in post.categories %}
+      <a href="{{ site.get('/categories/' + category)|url }}">
+      <span class="label label-default">{{ category }}</span></a>
+    {% endfor %}
+  </p>
+  </div>
+{% endmacro %}
