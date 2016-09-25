@@ -3,9 +3,16 @@
 {% from "macros/pagination.html" import render_pagination %}
 {% block title %}{{ this.title }}{% endblock %}
 {% block body %}
+<div class="blog-list">
+
   {% for child in this.pagination.items %}
     {{ render_blog_post_extract(child) }}
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
   {% endfor %}
 
   {{ render_pagination(this.pagination) }}
 {% endblock %}
+
+</div>

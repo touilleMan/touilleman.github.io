@@ -10,11 +10,15 @@
     {{ category.name }}</span></a>
   {% endfor %}
 
-  <br><br> <!-- Welcome to 1999 -->
+  <div class="blog-list">
+    <ul>
+    {% for child in this.children %}
+      {{ render_blog_post_extract(child) }}
+      {% if not loop.last %}
+        <hr>
+      {% endif %}
+    {% endfor %}
+    </ul>
+  </div>
 
-  <ul>
-  {% for child in this.children %}
-    {{ render_blog_post_extract(child) }}
-  {% endfor %}
-  </ul>
 {% endblock %}

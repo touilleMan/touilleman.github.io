@@ -27,3 +27,12 @@ body {
   background-color: #f5f5f5;
   padding-top: 5px;
 }
+
+.blog-post-extract {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.blog-list {
+  margin-top: 10%;
+}
