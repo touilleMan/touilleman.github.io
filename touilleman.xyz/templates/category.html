@@ -15,7 +15,7 @@
     {% for child in this.children %}
       {{ render_blog_post_extract(child) }}
       {% if not loop.last %}
-        <hr>
+        <!-- <hr> -->
       {% endif %}
     {% endfor %}
     </ul>

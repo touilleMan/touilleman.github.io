@@ -1,18 +1,19 @@
 {% extends "layout.html" %}
 {% from "macros/blog.html" import render_blog_post_extract %}
 {% from "macros/pagination.html" import render_pagination %}
-{% block title %}{{ this.title }}{% endblock %}
+{% block title %}All Articles{% endblock %}
 {% block body %}
 <div class="blog-list">
+
+	<h1>All Articles</h1>
 
   {% for child in this.pagination.items %}
     {{ render_blog_post_extract(child) }}
     {% if not loop.last %}
-      <hr>
+      <!-- <hr> -->
     {% endif %}
   {% endfor %}
 
   {{ render_pagination(this.pagination) }}
-{% endblock %}
-
 </div>
+{% endblock %}

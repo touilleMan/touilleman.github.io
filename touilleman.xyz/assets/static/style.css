@@ -5,7 +5,7 @@ code {
     word-wrap: break-word;
 }
 
-#content { border-left:1px dotted #C8C8C8; }
+/*#content { border-left:1px dotted #C8C8C8; }*/
 /*#sidebar { border-bottom:1px dotted #C8C8C8; }*/
 
 /* Sticky footer styles
@@ -13,11 +13,17 @@ code {
 html {
   position: relative;
   min-height: 100%;
+  /* Force scrollbar to be visible */
+  overflow:scroll;
+  overflow-x:hidden;
+  overflow-y: scroll;
 }
+
 body {
   /* Margin bottom by footer height */
   margin-bottom: 30px;
 }
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -34,5 +40,4 @@ body {
 }
 
 .blog-list {
-  margin-top: 10%;
 }

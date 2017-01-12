@@ -20,7 +20,7 @@
   <title>{% block title %}{% endblock %}</title>
   <body>
     <div class="container">
-      <div class="col-md-2 text-center" id="sidebar">
+      <header class="col-md-3 text-center" id="sidebar">
           <div class="profile">
             <div class="center-block" id="head" style="width: 100px;">
               <a href="/"><img src="/static/touilleman.jpeg"></a>
@@ -41,7 +41,7 @@
               <a href="{{ '/about'|url }}">About</a>
             </div>
           </div>
-      </div>
+      </header>
       <!-- Content here -->
       <div class="col-md-9" id="content">
         {% block body %}{% endblock %}
