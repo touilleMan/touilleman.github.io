@@ -2,6 +2,7 @@ Title: MongoDB at the EuroPython and a new sync/async ODM: μMongo
 Date: 2016-08-01
 Category: Python
 Tags: python, mongo
+Slug: mongodb-at-the-europython-and-a-new-sync-async-odm-umongo
 
 
 Coming back from the [EuroPython](https://ep2016.europython.eu) where I could

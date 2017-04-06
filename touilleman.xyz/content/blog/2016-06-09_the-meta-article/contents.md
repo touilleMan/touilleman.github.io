@@ -2,6 +2,7 @@ Title: The meta article - Warmup with lektor
 Date: 2016-06-09
 Category: Misc
 Tags: python; misc
+Slug: the-meta-article
 
 
 This blog aims at writting about my experiences in programming, so what better
