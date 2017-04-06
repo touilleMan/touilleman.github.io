@@ -1,6 +1,5 @@
-title: touilleMan - About
----
-body:
+Title: About
+
 
 I'm Emmanuel Leblond, engineer at [Scille](http://scille.eu) working most of the time in Paris, France.
 

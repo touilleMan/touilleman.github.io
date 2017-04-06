@@ -1,14 +1,8 @@
-title: Let's go to the Euro Pycon !
----
-author: Emmanuel Leblond
----
-pub_date: 2016-07-17
----
-categories: misc
----
-twitter_handle: touilleMan
----
-body:
+Title: Let's go to the Euro Pycon !
+Date: 2016-07-17
+Category: Python
+Tags: misc
+
 
 Tomorrow starts the Euro Pycon 2016 in Bilbao ;-)
 

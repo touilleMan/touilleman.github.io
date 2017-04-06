@@ -1,14 +1,8 @@
-title: The meta article - Warmup with lektor
----
-author: Emmanuel Leblond
----
-pub_date: 2016-06-09
----
-categories: python, misc
----
-twitter_handle: touilleMan
----
-body:
+Title: The meta article - Warmup with lektor
+Date: 2016-06-09
+Category: Misc
+Tags: python; misc
+
 
 This blog aims at writting about my experiences in programming, so what better
 start but to talk about my experience building this blog !
@@ -33,7 +27,7 @@ I have to say this is _really_ impressing for such a young project !
 
 Now for (literally) the big picture:
 
-![alt text](blog_schema.png)
+![you are somewhere here]({attach}blog_schema.png)
 
 This is a pretty classic workflow, a few comments though:
 

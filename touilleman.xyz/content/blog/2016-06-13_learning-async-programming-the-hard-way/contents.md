@@ -1,14 +1,8 @@
-title: Learning async programming the hard way
----
-author: Emmanuel Leblond
----
-pub_date: 2016-06-13
----
-categories: python
----
-twitter_handle: touilleMan
----
-body:
+Title: Learning async programming the hard way
+Date: 2016-06-13
+Category: Python
+Tags: python
+
 
 This weekend, I noticed diesel.io is no longer reachable. I guess it's time to
 organize the funerals of this project.
@@ -25,7 +19,7 @@ In late 2013, [Bump](http://bu.mp/), the company that developed diesel for it
 own needs, was bought by Google, it products discontinued and team merged.
 
 This put a neat stop to the project, which entered in hibernation:
-![diesel's contributions](diesel_contributions.png)
+![diesel's contributions]({attach}diesel_contributions.png)
 
 It's only a year later I got interested by the project.
 

@@ -1,0 +1,6 @@
+/blog                                                                           /
+/blog/feed/                                                                     /feeds/all.atom.xml
+/feed/                                                                          /feeds/all.atom.xml
+/blog/category/feed/python/                                                     /feeds/python.atom.xml
+/blog/category/python/feed/index.xml                                            /feeds/python.atom.xml
+/feed/python/                                                                   /feeds/python.atom.xml

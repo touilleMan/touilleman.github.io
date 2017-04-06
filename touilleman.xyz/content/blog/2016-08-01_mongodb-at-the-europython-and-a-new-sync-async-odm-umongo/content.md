@@ -1,14 +1,8 @@
-title: MongoDB at the EuroPython and a new sync/async ODM: μMongo
----
-author: Emmanuel Leblond
----
-pub_date: 2016-08-01
----
-categories: python, mongo
----
-twitter_handle: touilleMan
----
-body:
+Title: MongoDB at the EuroPython and a new sync/async ODM: μMongo
+Date: 2016-08-01
+Category: Python
+Tags: python, mongo
+
 
 Coming back from the [EuroPython](https://ep2016.europython.eu) where I could
 share feelings about the MongoDB ODMs in Python. I've learned few things there:
