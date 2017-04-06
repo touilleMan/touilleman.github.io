@@ -6,10 +6,8 @@ from os import environ
 
 AUTHOR = 'Emmanuel Leblond'
 SITENAME = 'touilleMan.xyz'
-SITEURL = 'http://touilleman.xyz'
-GOOGLE_ANALYTICS = 'UA-42073732-2'
+SITEURL = ''
 TWITTER_USERNAME = 'touilleMan'
-DISQUS_SITENAME = 'touilleman'
 GITHUB_URL = 'https://github.com/touilleMan'
 
 PATH = 'content'
@@ -26,8 +24,8 @@ TIMEZONE = 'Europe/Paris'
 DEFAULT_LANG = 'en'
 
 # Feed generation is usually not desired when developing
-# FEED_ALL_ATOM = None
-# CATEGORY_FEED_ATOM = None
+FEED_ALL_ATOM = None
+CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
@@ -45,4 +43,4 @@ SOCIAL = (('twitter', 'https://twitter.com/touilleMan'),
 DEFAULT_PAGINATION = 10
 
 # Uncomment following line if you want document-relative URLs when developing
-RELATIVE_URLS = 'RELATIVE_URLS' in environ
+# RELATIVE_URLS = None

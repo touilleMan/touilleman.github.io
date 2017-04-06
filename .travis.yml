@@ -1,21 +1,17 @@
 language: python
-python: 2.7
+python: 3.5
 env:
   secure: FXfiY/3E8br9XxmK8F9IyahOGqg+FiEz1dV6oi71orEYY7Up+h1AvPK9EY9h4dmMmkAu+jH/YyFQC1eHLZgXwWD4fJNC+H2kFhf0NAuVWSfWvaR8WwH32smfMwqt7SSLnqgpoq+cBh9ze77Zbga620aeEDxfvvVDE6A8ugHX8vPrX1WYxITj1n+4IpHt2vUcUl/aoLljqsJK0WPspY0DRMSShopjbiHcRz6BS4XbQivOKJ5bot8hxOp7bMlRTtUBB4fjVZWxHg+I754/Jdmgz9FHzUoJiqxSscLNC8Y8R3qxk8k94HMZ34g7K6UTy1XhcBGGh8JOYehs9TAR+L62aPJpOzNcGjmegHnppdVoZgoMGGYw3HecvXo9/0OlCjpGm3UlrLOHIl2cBkYy17QNhdi7v2r1oyLu7i1erD5Bb4wMBbenlT4NJ9Yd6BZmf2r9T9kxaVzxBTTEqpi2vQ+boDwf8wC+sAxExZ5yA59qlLnWTJBEy3HVXXsZum/hET7omI7REVfj/+/9hJmOiz9RqasUtpZO7MxgYPWCXKhJTeiyllEZnx99fdfqBvXOaQV/EbGBNiupmtuH04RICLlrbQkAnCJQ43dxo+gOlOb4CQJ2ETEOgMK4d9XD+TA+KB77a0Y3gYnfXx/FxvVeLWqzMMvBNNjYI7xfTxeLTfz6uXo=
 cache:
   directories:
   - "$HOME/.cache/pip"
-  - "$HOME/.cache/lektor/builds"
-before_install:
-- cd touilleman.xyz
-install: pip install Lektor
-script: lektor build
+install: pip install -r requirements.txt
+script: make publish
 before_deploy:
 - npm install netlify-cli -g
-- lektor project-info --output-path
 deploy:
   provider: script
   script: netlify -t $NETLIFY_TOKEN deploy --site-id 581d06c3-394a-4e8a-8191-8a7d794c2a50
-    --path `lektor project-info --output-path`
+    --path output
   on:
     branch: master
