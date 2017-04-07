@@ -43,10 +43,16 @@ LINKS = ()
 # LINKS = (('Pelican', 'http://getpelican.com/'),
 #          ('Python.org', 'http://python.org/'),
 #          ('Jinja2', 'http://jinja.pocoo.org/'),)
+MENUITEMS = (
+    ('About', 'about'),
+    ('Python', '/category/python.html'),
+    ('Misc', '/category/misc.html'),)
 
 # Social widget
-SOCIAL = (('twitter', 'https://twitter.com/touilleMan'),
-          ('github', 'https://github.com/touilleMan'),)
+SOCIAL = (
+    ('twitter', 'https://twitter.com/touilleMan'),
+    ('github', 'https://github.com/touilleMan'),
+    ('rss', 'http://touilleman.xyz/feeds/all.atom.xml'))
 
 DEFAULT_PAGINATION = 10
 
