@@ -44,7 +44,7 @@ LINKS = ()
 #          ('Python.org', 'http://python.org/'),
 #          ('Jinja2', 'http://jinja.pocoo.org/'),)
 MENUITEMS = (
-    ('About', 'about'),
+    ('About', '/about'),
     ('Python', '/category/python.html'),
     ('Misc', '/category/misc.html'),)
 
