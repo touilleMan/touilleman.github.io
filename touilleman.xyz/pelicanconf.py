@@ -10,6 +10,10 @@ SITEURL = ''
 TWITTER_USERNAME = 'touilleMan'
 GITHUB_URL = 'https://github.com/touilleMan'
 
+TAGLINE = 'Open source & Python lover'
+THEME = "pelican-themes/pure-single"
+PROFILE_IMG_URL = '/extra/touilleman.jpeg'
+# COVER_IMG_URL = ''
 PATH = 'content'
 STATIC_PATHS = ['blog', 'extra']
 EXTRA_PATH_METADATA = {
