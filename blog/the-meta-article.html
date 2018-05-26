@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="touilleMan.xyz, Open source & Python lover">
+
+        <link rel="alternate"  href="http://touilleman.xyz/feeds/all.atom.xml" type="application/atom+xml" title="touilleMan.xyz Full Atom Feed"/>
+
+        <title>The meta article - Warmup with lektor // touilleMan.xyz // Open source & Python lover</title>
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://touilleman.xyz/theme/css/pure.css">
+    <link rel="stylesheet" href="http://touilleman.xyz/theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <div class="cover-img" style="background: none repeat scroll 0% 0% #3D4F5D">
+                <div class="cover-body">
+                    <header class="header">
+                        <hgroup>
+                            <img class="avatar" src="/extra/touilleman.jpeg">
+                            <h1 class="brand-main"><a href="http://touilleman.xyz">touilleMan.xyz</a></h1>
+                            <p class="tagline">Open source & Python lover</p>
+                                <p class="links"><a href="/about">About</a></p>
+                                <p class="links"><a href="/category/python.html">Python</a></p>
+                                <p class="links"><a href="/category/misc.html">Misc</a></p>
+                                <p class="social">
+                                    <a href="https://twitter.com/touilleMan">
+                                        <i class="fa fa-twitter fa-3x"></i>
+                                    </a>
+                                    <a href="https://github.com/touilleMan">
+                                        <i class="fa fa-github fa-3x"></i>
+                                    </a>
+                                    <a href="http://touilleman.xyz/feeds/all.atom.xml">
+                                        <i class="fa fa-rss fa-3x"></i>
+                                    </a>
+                                </p>
+                        </hgroup>
+                    </header>
+                </div>
+            </div>
+        </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>The meta article - Warmup with lektor</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="http://touilleman.xyz/tag/python.html">python</a>
+                                <a class="post-category" href="http://touilleman.xyz/tag/misc.html">misc</a>
+                        </p>
+                </header>
+            </section>
+            <p>This blog aims at writting about my experiences in programming, so what better
+start but to talk about my experience building this blog !</p>
+<p>First and foremost, <em><a href="https://github.com/touilleMan/touilleman.xyz">show me the code</a></em>.</p>
+<p>Hearing about Armin "flask" Ronacher's
+<a href="https://twitter.com/mitsuhiko/status/678963561285177344">new project</a>,
+I figured out lektor was exactly the tool I was looking for.
+Beside a young project means <a href="https://github.com/lektor/lektor/pull/222">opportunities</a>
+<a href="https://github.com/lektor/lektor-markdown-highlighter/issues/2">to</a>
+<a href="https://github.com/lektor/lektor-website/issues/101">contribute</a>,
+adding your little rocks to the growing mountain is so much rewarding ;-)</p>
+<p>Working with lektor feels like flask: you get the concept in a glimpse,
+have a working poc in minutes but thanks to it great architecture
+there is plugins for basically all your needs.</p>
+<p>I have to say this is <em>really</em> impressing for such a young project !</p>
+<p>Now for (literally) the big picture:</p>
+<p><img alt="you are somewhere here" src="http://touilleman.xyz/blog/blog_schema.png"></p>
+<p>This is a pretty classic workflow, a few comments though:</p>
+<p>lektor provides <a href="https://www.getlektor.com/docs/deployment/">plenty ways to deploy</a>,
+my choice was... none !
+Armin <a href="http://lucumr.pocoo.org/2015/12/21/introducing-lektor/">presented lektor</a>
+as a way for him to handle his parents' blog without suffering too much.
+Basically he (as the "tech guy") had to configure at first the project (how to
+deploy, the css etc.) then he can hand it to his parents who will be able to
+create&amp;update posts and deploy inside a CMS gui (the dev lektor server running on
+their own computer). Furthermore, they could just throw the lektor project folder
+inside their Dropbox and to get their blog saved without hassles !</p>
+<p>This is an awesome workflow for non-technical people, but as someone who use
+git everyday I want to be able to write an article in a branch, then merge it
+to the master and finally have my blog updated once the code is pushed on github...</p>
+<p>...wich leads us to <a href="https://travis-ci.org">Travis</a>. I love the way you can
+store secret inside the <code>.travis.yml</code>.
+Travis creates a gpg key for each project and uses it to crypt your data. Of
+course only trusted build have access to those data to prevent someone sending
+you a PR with <code>echo $MY_SECRET_VAR</code> to steal your stuff !</p>
+<p>Considering the hosting, I first thought about <a href="https://pages.github.com/">github pages</a>
+but I don't feel comfortable storing my Github credentials within Travis (even
+if I could create a token with limited access, the granularity would allow
+write access to all my public repos...).</p>
+<p>So I head up to <a href="https://www.netlify.com/">netlify</a>, the service seems good,
+they put a little token (can't miss it though !) on the right corner but given
+the storage is free I would call this an exchange of interests ;-)</p>
+<p>I'm less happy with the fact you must use the netlify command to deploy your
+stuff on their servers, <em>sftp cannot beat the swag of a nodejs bloat with a
+shiny colored cli I guess...</em></p>
+            <a href="#" class="go-top">Go Top</a>
+    <div class="comments">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = "touilleman"; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+<footer class="footer">
+    <p>&copy; Emmanuel Leblond &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure-single">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+    </div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-42073732-2");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+
+</body>
+</html>

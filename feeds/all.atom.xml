@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>touilleMan.xyz</title><link href="http://touilleman.xyz/" rel="alternate"></link><link href="http://touilleman.xyz/feeds/all.atom.xml" rel="self"></link><id>http://touilleman.xyz/</id><updated>2016-08-01T00:00:00+02:00</updated><entry><title>MongoDB at the EuroPython and a new sync/async ODM: μMongo</title><link href="http://touilleman.xyz/blog/mongodb-at-the-europython-and-a-new-sync-async-odm-umongo" rel="alternate"></link><published>2016-08-01T00:00:00+02:00</published><updated>2016-08-01T00:00:00+02:00</updated><author><name>Emmanuel Leblond</name></author><id>tag:touilleman.xyz,2016-08-01:/blog/mongodb-at-the-europython-and-a-new-sync-async-odm-umongo</id><summary type="html">&lt;p&gt;Coming back from the &lt;a href="https://ep2016.europython.eu"&gt;EuroPython&lt;/a&gt; where I could
+share feelings about the MongoDB ODMs in Python. I've learned few things there:&lt;/p&gt;
+&lt;h2&gt;People only talk about Mongoengine&lt;/h2&gt;
+&lt;p&gt;Mongoengine is the most well known ODM out there, probably because it is one
+of the oldest and most starred on Github. Beside it's …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Coming back from the &lt;a href="https://ep2016.europython.eu"&gt;EuroPython&lt;/a&gt; where I could
+share feelings about the MongoDB ODMs in Python. I've learned few things there:&lt;/p&gt;
+&lt;h2&gt;People only talk about Mongoengine&lt;/h2&gt;
+&lt;p&gt;Mongoengine is the most well known ODM out there, probably because it is one
+of the oldest and most starred on Github. Beside it's the only one on the 1st
+Google page of a &lt;code&gt;python mongodb&lt;/code&gt; search.
+So the alternatives to Mongoengine seems forgotten even if they are pretty numerous:
+&lt;a href="https://humbledb.readthedocs.io/en/latest/"&gt;humbledb&lt;/a&gt;,
+&lt;a href="http://www.mongoalchemy.org/"&gt;mongoalchemy&lt;/a&gt;,
+&lt;a href="https://github.com/slacy/minimongo"&gt;minimongo&lt;/a&gt;,
+&lt;a href="http://ming.readthedocs.io/en/latest/"&gt;ming&lt;/a&gt;,
+&lt;a href="https://github.com/eguven/nanomongo"&gt;nanomongo&lt;/a&gt; etc.&lt;/p&gt;
+&lt;p&gt;My guess is people who come to MongoDB go with the bigger thing, if it's
+good they stick with it, if it's bad they don't want to do another poor
+choice and start relying on themselves :-(&lt;/p&gt;
+&lt;h2&gt;People don't like Mongoengine&lt;/h2&gt;
+&lt;p&gt;Asking what people think about Mongoengine was my little funny moment:
+First they always complained about how bad it is, then I announced I'm part of
+the Mongoengine team and finally I could see people turning white, red or
+laughing depending on how deeply they shared there painful relationship
+with Mongoengine.&lt;/p&gt;
+&lt;p&gt;But honestly I can't blame them. I think Mongoengine trouble comes from it
+inception: It was created
+&lt;a href="https://github.com/MongoEngine/mongoengine/commit/af38a92ec9862a7cf18766acf8a63a7adbcb6d4b"&gt;a long time ago&lt;/a&gt;
+when MongoDB was just out.&lt;/p&gt;
+&lt;p&gt;My guess is back in those dark times they was not enough experience with this
+tech and the original author wanted to create and ORM for mongo to mimic what
+you would do with an SQL database.&lt;/p&gt;
+&lt;p&gt;For example Mongoengine allows you to add a &lt;code&gt;reverse_delete_rule&lt;/code&gt; to a
+&lt;a href="http://docs.mongoengine.org/apireference.html#mongoengine.fields.ReferenceField"&gt;reference field&lt;/a&gt;.
+This way, if the referenced document is destroyed Mongoengine can update the
+reference to null or even do cascade deletion, feels pretty SQL isn't it ?
+A bit too much !&lt;/p&gt;
+&lt;p&gt;The trouble is this operation is not atomic at all given it is done by
+Mongoengine on top of a regular pymongo driver (and MongoDB cannot do that
+anyway). So you end up with concurrency issues, inconsistent data if your
+application stops during the processing of this operation etc.&lt;/p&gt;
+&lt;p&gt;I intended a talk on the MongoDB Driver during the week, at the end someone asked the
+talker what does he think about Mongoengine:&lt;/p&gt;
+&lt;iframe width="764" height="429" src="https://www.youtube.com/embed/2gee5oUAO14?t=2751" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;In a nutshell: people think of Mongoengine like a way to do SQL stuff in Mongo !&lt;/p&gt;
+&lt;h2&gt;People think they don't need an ODM (but they do !)&lt;/h2&gt;
+&lt;p&gt;After putting people into embarrassment with my Mongoengine question, I
+try to relieve them by asking them about the ODM they use. The answer was
+"Nothing, just plain pymongo !" pretty often (the "don't want to two poor
+choices in a row" effect I guess).&lt;/p&gt;
+&lt;p&gt;However, after digging a bit, I realize those people created they own validation
+system around pymongo, and so ended up with a custom ODM when their project
+grown up and they tried to refactor it...&lt;/p&gt;
+&lt;p&gt;If you go further in the upper video, that's precisely what says the next
+talking person: plenty of people use Mongoengine because they want a way to
+validate they documents.&lt;/p&gt;
+&lt;h2&gt;AsyncIO is "the next big thing"™&lt;/h2&gt;
+&lt;p&gt;The number of talks about asyncIO was crazy high, the nodejs community has
+proved Twisted was right a decade ago (well it's not the silver bullet, but
+I think it goes along pretty well with MongoDB big data credo). Now 
+If you want to do asynchronous mongoDB, &lt;a href="https://github.com/mongodb/motor"&gt;there&lt;/a&gt;
+&lt;a href="https://bitbucket.org/mrdon/asyncio-mongo"&gt;is&lt;/a&gt;
+&lt;a href="https://github.com/twisted/txmongo"&gt;drivers&lt;/a&gt;. But you run short on ODM:
+I could only find &lt;a href="https://github.com/heynemann/motorengine"&gt;motorengine&lt;/a&gt;,
+which is a fork of... Mongoengine !&lt;/p&gt;
+&lt;h2&gt;What's from there ?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;MongoDB is not SQL, you don't want to feel like SQL because it would mean
+a big lie behind the scene&lt;/li&gt;
+&lt;li&gt;an ODM should gives you object orientation and data validation, nothing more&lt;/li&gt;
+&lt;li&gt;Even schema-less, you need to validate what's going into your DB
+(think of MongoDB as Python: "this variable &lt;em&gt;can&lt;/em&gt; be anything but it &lt;em&gt;wont&lt;/em&gt;
+be because otherwise my program will blow up !")&lt;/li&gt;
+&lt;li&gt;An async ODM is clearly missing here ;-)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So here is &lt;a href="https://github.com/Scille/umongo"&gt;μMongo&lt;/a&gt;, a simple ("μ" used to
+stand for "micro" but given it is now pretty feature-full it is now only the
+letter "mu") MongoDB ODM compatible with the majors drivers (both sync and
+async !) and relying on &lt;a href="http://marshmallow.readthedocs.org/"&gt;Marshamllow&lt;/a&gt; for
+all the validation/serialization stuff (why reinvent the wheel when a first
+class library is available ?).&lt;/p&gt;</content><category term="python"></category><category term="mongo"></category></entry><entry><title>Let's go to the Euro Pycon !</title><link href="http://touilleman.xyz/blog/lets-go-to-the-euro-pycon" rel="alternate"></link><published>2016-07-17T00:00:00+02:00</published><updated>2016-07-17T00:00:00+02:00</updated><author><name>Emmanuel Leblond</name></author><id>tag:touilleman.xyz,2016-07-17:/blog/lets-go-to-the-euro-pycon</id><summary type="html">&lt;p&gt;Tomorrow starts the Euro Pycon 2016 in Bilbao ;-)&lt;/p&gt;
+&lt;p&gt;Well it actually started today, but the events were only for women ("Django Girl") and newcomers to python ("Beginner's day").
+The latter catch my attention btw: I would guess only long time lover of a language would come to the conference about …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Tomorrow starts the Euro Pycon 2016 in Bilbao ;-)&lt;/p&gt;
+&lt;p&gt;Well it actually started today, but the events were only for women ("Django Girl") and newcomers to python ("Beginner's day").
+The latter catch my attention btw: I would guess only long time lover of a language would come to the conference about it !&lt;/p&gt;
+&lt;p&gt;But on second though, if I look back since how much time I've been struggling to learn Haskell, such event could be exactly the impulse I need to overcome my daily routine get into the ecosystem &amp;amp; gravitating philosophy.&lt;/p&gt;
+&lt;p&gt;It haven't started yet, I'm already learning ! What a week this gonna be ;-)&lt;/p&gt;
+&lt;p&gt;EDIT: What a week indeed !
+- Tons of Goodies: T-shirts, stickers, towel, powerpack battery, and even a micropython board !
+- Conferences, riddles organized by the sponsors
+- I've join the Pypy team during the sprint weekend, the are as awesome as there project !
+- Good food from the Basque country, we got an event inside a cider house too
+- And of course plenty of cool people to hang out with ;-)&lt;/p&gt;
+&lt;p&gt;Can't wait for the next PyCon&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>Learning async programming the hard way</title><link href="http://touilleman.xyz/blog/learning-async-programming-the-hard-way" rel="alternate"></link><published>2016-06-13T00:00:00+02:00</published><updated>2016-06-13T00:00:00+02:00</updated><author><name>Emmanuel Leblond</name></author><id>tag:touilleman.xyz,2016-06-13:/blog/learning-async-programming-the-hard-way</id><summary type="html">&lt;p&gt;This weekend, I noticed diesel.io is no longer reachable. I guess it's time to
+organize the funerals of this project.&lt;/p&gt;
+&lt;p&gt;First a word about the dead from it &lt;a href="https://pypi.python.org/pypi/diesel/3.0.24"&gt;pypi page&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;diesel is a framework for easily writing reliable and scalable network applications in Python. It uses the greenlet library …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;p&gt;This weekend, I noticed diesel.io is no longer reachable. I guess it's time to
+organize the funerals of this project.&lt;/p&gt;
+&lt;p&gt;First a word about the dead from it &lt;a href="https://pypi.python.org/pypi/diesel/3.0.24"&gt;pypi page&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;diesel is a framework for easily writing reliable and scalable network applications in Python. It uses the greenlet library layered atop asynchronous socket I/O in Python to achieve benefits of both the threaded-style (linear, blocking-ish code flow) and evented-style (no locking, low overhead per connection) concurrency paradigms. It’s design is heavily inspired by the Erlang/OTP platform.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://www.reddit.com/r/programming/comments/9ndev/announcing_diesel_async_io_in_python_for_the_rest/?"&gt;Announced in 2010&lt;/a&gt;,
+the project was well received (+500 stars on github) but eventually failed
+to make it hole in the crowded world of Python async frameworks.&lt;/p&gt;
+&lt;p&gt;In late 2013, &lt;a href="http://bu.mp/"&gt;Bump&lt;/a&gt;, the company that developed diesel for it
+own needs, was bought by Google, it products discontinued and team merged.&lt;/p&gt;
+&lt;p&gt;This put a neat stop to the project, which entered in hibernation:
+&lt;img alt="diesel's contributions" src="http://touilleman.xyz/blog/diesel_contributions.png"&gt;&lt;/p&gt;
+&lt;p&gt;It's only a year later I got interested by the project.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Why? Maybe it's because
+I've always had a weakness for lost causes&lt;/em&gt; (to
+&lt;a href="http://www.imdb.com/title/tt0031381/quotes?item=qt1145061"&gt;paraphrase Rhett Buttler&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;What really caught my eye was diesel offers an implementation of Flask and it
+it ecosystem (let aside the extensions making use of the network which
+blocking nature couldn't play nice in an async framework).&lt;/p&gt;
+&lt;p&gt;The drawback, however, was diesel was Python 2 only and, as I stated earlier,
+it community was sparse if not vanished.&lt;/p&gt;
+&lt;p&gt;Given I was having some free time (that's the reason I start researching about
+async frameworks in the first place) I choose the hard way: porting the project
+to Python 3 !&lt;/p&gt;
+&lt;p&gt;Who knows ? Maybe seeing someone investing time into there project could
+re-motivate it creators, and with some posts&amp;amp;benchmarks on reddit we could
+even bring new people in...&lt;/p&gt;
+&lt;p&gt;Dowski, the maintainer of the project,
+&lt;a href="https://github.com/dieseldev/diesel/issues/97"&gt;was really friendly and helpful&lt;/a&gt;
+and shared my hopes on the project. So I started working on the port, and
+a month later the &lt;a href="https://github.com/dieseldev/diesel/pull/100"&gt;work was done&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;However my attempt to shake the sleeping giant turned short: too few free time,
+missing motivation and Diesel4 (the new major version with Python 3 support)
+didn't get released on pypi, in fact it didn't even make it way to the master :'-(&lt;/p&gt;
+&lt;p&gt;Put this way, this seems harsh: I worked hard and no-one will ever use my work
+(not even me !). But in fact it's all the opposite !&lt;/p&gt;
+&lt;p&gt;One of the biggest grieve Armin Ronacher gave to Python3 is the str/bytes separation
+which make &lt;a href="http://lucumr.pocoo.org/2010/5/25/wsgi-on-python-3/"&gt;porting low level code pretty hard&lt;/a&gt;.
+Well diesel was full of such things (protocols, transport, socket communication etc.)
+so porting the code was far more than just a 2to3 pass, I actually had to
+read and understand all the code !&lt;/p&gt;
+&lt;p&gt;This project gave me the opportunity to go deep into async programming,
+to understand the &lt;a href="https://en.wikipedia.org/wiki/Reactor_pattern"&gt;reactor pattern&lt;/a&gt;
+and &lt;a href="https://github.com/dieseldev/diesel/blob/diesel4/diesel/core.py"&gt;hack into an implementation of it&lt;/a&gt;,
+to discover &lt;a href="https://greenlet.readthedocs.io/en/latest/"&gt;greenlet&lt;/a&gt;,
+to play with the &lt;a href="https://github.com/dieseldev/diesel/blob/diesel4/diesel/protocols/redis.py"&gt;redis&lt;/a&gt;
+and &lt;a href="https://github.com/dieseldev/diesel/blob/diesel4/diesel/protocols/mongodb.py"&gt;mongodb&lt;/a&gt;
+protocols, and to discover someone finally did something to replace the
+&lt;a href="https://github.com/wearpants/twiggy"&gt;awful logging module&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;With &lt;a href="https://docs.python.org/3/library/asyncio.html"&gt;asyncio&lt;/a&gt; raising as
+the new unified standard for async programming in Python, diesel is damn
+no matter what. So it's time to move on let it rest in peace, but I would
+suggest you anyway &lt;a href="https://github.com/dieseldev/diesel/tree/diesel4"&gt;to go pay your respects to it&lt;/a&gt;,
+may it code teaches you as much as it did to me.&lt;/p&gt;
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;PS: After 2 years of inactivity,
+&lt;a href="http://blog.dowski.com/2015/12/01/making-things/"&gt;Dowski's blog&lt;/a&gt; got a new
+entry:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;
+ I think it's time to make things again.
+&lt;/p&gt;
+&lt;footer&gt;Dowski&lt;/footer&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Is it really the end of diesel ?&lt;/p&gt;</content><category term="python"></category></entry><entry><title>The meta article - Warmup with lektor</title><link href="http://touilleman.xyz/blog/the-meta-article" rel="alternate"></link><published>2016-06-09T00:00:00+02:00</published><updated>2016-06-09T00:00:00+02:00</updated><author><name>Emmanuel Leblond</name></author><id>tag:touilleman.xyz,2016-06-09:/blog/the-meta-article</id><summary type="html">&lt;p&gt;This blog aims at writting about my experiences in programming, so what better
+start but to talk about my experience building this blog !&lt;/p&gt;
+&lt;p&gt;First and foremost, &lt;em&gt;&lt;a href="https://github.com/touilleMan/touilleman.xyz"&gt;show me the code&lt;/a&gt;&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Hearing about Armin "flask" Ronacher's
+&lt;a href="https://twitter.com/mitsuhiko/status/678963561285177344"&gt;new project&lt;/a&gt;,
+I figured out lektor was exactly the tool I was looking for.
+Beside …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This blog aims at writting about my experiences in programming, so what better
+start but to talk about my experience building this blog !&lt;/p&gt;
+&lt;p&gt;First and foremost, &lt;em&gt;&lt;a href="https://github.com/touilleMan/touilleman.xyz"&gt;show me the code&lt;/a&gt;&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Hearing about Armin "flask" Ronacher's
+&lt;a href="https://twitter.com/mitsuhiko/status/678963561285177344"&gt;new project&lt;/a&gt;,
+I figured out lektor was exactly the tool I was looking for.
+Beside a young project means &lt;a href="https://github.com/lektor/lektor/pull/222"&gt;opportunities&lt;/a&gt;
+&lt;a href="https://github.com/lektor/lektor-markdown-highlighter/issues/2"&gt;to&lt;/a&gt;
+&lt;a href="https://github.com/lektor/lektor-website/issues/101"&gt;contribute&lt;/a&gt;,
+adding your little rocks to the growing mountain is so much rewarding ;-)&lt;/p&gt;
+&lt;p&gt;Working with lektor feels like flask: you get the concept in a glimpse,
+have a working poc in minutes but thanks to it great architecture
+there is plugins for basically all your needs.&lt;/p&gt;
+&lt;p&gt;I have to say this is &lt;em&gt;really&lt;/em&gt; impressing for such a young project !&lt;/p&gt;
+&lt;p&gt;Now for (literally) the big picture:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="you are somewhere here" src="http://touilleman.xyz/blog/blog_schema.png"&gt;&lt;/p&gt;
+&lt;p&gt;This is a pretty classic workflow, a few comments though:&lt;/p&gt;
+&lt;p&gt;lektor provides &lt;a href="https://www.getlektor.com/docs/deployment/"&gt;plenty ways to deploy&lt;/a&gt;,
+my choice was... none !
+Armin &lt;a href="http://lucumr.pocoo.org/2015/12/21/introducing-lektor/"&gt;presented lektor&lt;/a&gt;
+as a way for him to handle his parents' blog without suffering too much.
+Basically he (as the "tech guy") had to configure at first the project (how to
+deploy, the css etc.) then he can hand it to his parents who will be able to
+create&amp;amp;update posts and deploy inside a CMS gui (the dev lektor server running on
+their own computer). Furthermore, they could just throw the lektor project folder
+inside their Dropbox and to get their blog saved without hassles !&lt;/p&gt;
+&lt;p&gt;This is an awesome workflow for non-technical people, but as someone who use
+git everyday I want to be able to write an article in a branch, then merge it
+to the master and finally have my blog updated once the code is pushed on github...&lt;/p&gt;
+&lt;p&gt;...wich leads us to &lt;a href="https://travis-ci.org"&gt;Travis&lt;/a&gt;. I love the way you can
+store secret inside the &lt;code&gt;.travis.yml&lt;/code&gt;.
+Travis creates a gpg key for each project and uses it to crypt your data. Of
+course only trusted build have access to those data to prevent someone sending
+you a PR with &lt;code&gt;echo $MY_SECRET_VAR&lt;/code&gt; to steal your stuff !&lt;/p&gt;
+&lt;p&gt;Considering the hosting, I first thought about &lt;a href="https://pages.github.com/"&gt;github pages&lt;/a&gt;
+but I don't feel comfortable storing my Github credentials within Travis (even
+if I could create a token with limited access, the granularity would allow
+write access to all my public repos...).&lt;/p&gt;
+&lt;p&gt;So I head up to &lt;a href="https://www.netlify.com/"&gt;netlify&lt;/a&gt;, the service seems good,
+they put a little token (can't miss it though !) on the right corner but given
+the storage is free I would call this an exchange of interests ;-)&lt;/p&gt;
+&lt;p&gt;I'm less happy with the fact you must use the netlify command to deploy your
+stuff on their servers, &lt;em&gt;sftp cannot beat the swag of a nodejs bloat with a
+shiny colored cli I guess...&lt;/em&gt;&lt;/p&gt;</content><category term="python"></category><category term="misc"></category></entry></feed>

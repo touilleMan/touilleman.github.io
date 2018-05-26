@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="touilleMan.xyz, Open source & Python lover">
+
+        <link rel="alternate"  href="http://touilleman.xyz/feeds/all.atom.xml" type="application/atom+xml" title="touilleMan.xyz Full Atom Feed"/>
+
+        <title>MongoDB at the EuroPython and a new sync/async ODM: μMongo // touilleMan.xyz // Open source & Python lover</title>
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://touilleman.xyz/theme/css/pure.css">
+    <link rel="stylesheet" href="http://touilleman.xyz/theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <div class="cover-img" style="background: none repeat scroll 0% 0% #3D4F5D">
+                <div class="cover-body">
+                    <header class="header">
+                        <hgroup>
+                            <img class="avatar" src="/extra/touilleman.jpeg">
+                            <h1 class="brand-main"><a href="http://touilleman.xyz">touilleMan.xyz</a></h1>
+                            <p class="tagline">Open source & Python lover</p>
+                                <p class="links"><a href="/about">About</a></p>
+                                <p class="links"><a href="/category/python.html">Python</a></p>
+                                <p class="links"><a href="/category/misc.html">Misc</a></p>
+                                <p class="social">
+                                    <a href="https://twitter.com/touilleMan">
+                                        <i class="fa fa-twitter fa-3x"></i>
+                                    </a>
+                                    <a href="https://github.com/touilleMan">
+                                        <i class="fa fa-github fa-3x"></i>
+                                    </a>
+                                    <a href="http://touilleman.xyz/feeds/all.atom.xml">
+                                        <i class="fa fa-rss fa-3x"></i>
+                                    </a>
+                                </p>
+                        </hgroup>
+                    </header>
+                </div>
+            </div>
+        </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>MongoDB at the EuroPython and a new sync/async ODM: μMongo</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="http://touilleman.xyz/tag/python.html">python</a>
+                                <a class="post-category" href="http://touilleman.xyz/tag/mongo.html">mongo</a>
+                        </p>
+                </header>
+            </section>
+            <p>Coming back from the <a href="https://ep2016.europython.eu">EuroPython</a> where I could
+share feelings about the MongoDB ODMs in Python. I've learned few things there:</p>
+<h2>People only talk about Mongoengine</h2>
+<p>Mongoengine is the most well known ODM out there, probably because it is one
+of the oldest and most starred on Github. Beside it's the only one on the 1st
+Google page of a <code>python mongodb</code> search.
+So the alternatives to Mongoengine seems forgotten even if they are pretty numerous:
+<a href="https://humbledb.readthedocs.io/en/latest/">humbledb</a>,
+<a href="http://www.mongoalchemy.org/">mongoalchemy</a>,
+<a href="https://github.com/slacy/minimongo">minimongo</a>,
+<a href="http://ming.readthedocs.io/en/latest/">ming</a>,
+<a href="https://github.com/eguven/nanomongo">nanomongo</a> etc.</p>
+<p>My guess is people who come to MongoDB go with the bigger thing, if it's
+good they stick with it, if it's bad they don't want to do another poor
+choice and start relying on themselves :-(</p>
+<h2>People don't like Mongoengine</h2>
+<p>Asking what people think about Mongoengine was my little funny moment:
+First they always complained about how bad it is, then I announced I'm part of
+the Mongoengine team and finally I could see people turning white, red or
+laughing depending on how deeply they shared there painful relationship
+with Mongoengine.</p>
+<p>But honestly I can't blame them. I think Mongoengine trouble comes from it
+inception: It was created
+<a href="https://github.com/MongoEngine/mongoengine/commit/af38a92ec9862a7cf18766acf8a63a7adbcb6d4b">a long time ago</a>
+when MongoDB was just out.</p>
+<p>My guess is back in those dark times they was not enough experience with this
+tech and the original author wanted to create and ORM for mongo to mimic what
+you would do with an SQL database.</p>
+<p>For example Mongoengine allows you to add a <code>reverse_delete_rule</code> to a
+<a href="http://docs.mongoengine.org/apireference.html#mongoengine.fields.ReferenceField">reference field</a>.
+This way, if the referenced document is destroyed Mongoengine can update the
+reference to null or even do cascade deletion, feels pretty SQL isn't it ?
+A bit too much !</p>
+<p>The trouble is this operation is not atomic at all given it is done by
+Mongoengine on top of a regular pymongo driver (and MongoDB cannot do that
+anyway). So you end up with concurrency issues, inconsistent data if your
+application stops during the processing of this operation etc.</p>
+<p>I intended a talk on the MongoDB Driver during the week, at the end someone asked the
+talker what does he think about Mongoengine:</p>
+<iframe width="764" height="429" src="https://www.youtube.com/embed/2gee5oUAO14?t=2751" frameborder="0" allowfullscreen></iframe>
+
+<p>In a nutshell: people think of Mongoengine like a way to do SQL stuff in Mongo !</p>
+<h2>People think they don't need an ODM (but they do !)</h2>
+<p>After putting people into embarrassment with my Mongoengine question, I
+try to relieve them by asking them about the ODM they use. The answer was
+"Nothing, just plain pymongo !" pretty often (the "don't want to two poor
+choices in a row" effect I guess).</p>
+<p>However, after digging a bit, I realize those people created they own validation
+system around pymongo, and so ended up with a custom ODM when their project
+grown up and they tried to refactor it...</p>
+<p>If you go further in the upper video, that's precisely what says the next
+talking person: plenty of people use Mongoengine because they want a way to
+validate they documents.</p>
+<h2>AsyncIO is "the next big thing"™</h2>
+<p>The number of talks about asyncIO was crazy high, the nodejs community has
+proved Twisted was right a decade ago (well it's not the silver bullet, but
+I think it goes along pretty well with MongoDB big data credo). Now 
+If you want to do asynchronous mongoDB, <a href="https://github.com/mongodb/motor">there</a>
+<a href="https://bitbucket.org/mrdon/asyncio-mongo">is</a>
+<a href="https://github.com/twisted/txmongo">drivers</a>. But you run short on ODM:
+I could only find <a href="https://github.com/heynemann/motorengine">motorengine</a>,
+which is a fork of... Mongoengine !</p>
+<h2>What's from there ?</h2>
+<ul>
+<li>MongoDB is not SQL, you don't want to feel like SQL because it would mean
+a big lie behind the scene</li>
+<li>an ODM should gives you object orientation and data validation, nothing more</li>
+<li>Even schema-less, you need to validate what's going into your DB
+(think of MongoDB as Python: "this variable <em>can</em> be anything but it <em>wont</em>
+be because otherwise my program will blow up !")</li>
+<li>An async ODM is clearly missing here ;-)</li>
+</ul>
+<p>So here is <a href="https://github.com/Scille/umongo">μMongo</a>, a simple ("μ" used to
+stand for "micro" but given it is now pretty feature-full it is now only the
+letter "mu") MongoDB ODM compatible with the majors drivers (both sync and
+async !) and relying on <a href="http://marshmallow.readthedocs.org/">Marshamllow</a> for
+all the validation/serialization stuff (why reinvent the wheel when a first
+class library is available ?).</p>
+            <a href="#" class="go-top">Go Top</a>
+    <div class="comments">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = "touilleman"; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+<footer class="footer">
+    <p>&copy; Emmanuel Leblond &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure-single">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+    </div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-42073732-2");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+
+</body>
+</html>

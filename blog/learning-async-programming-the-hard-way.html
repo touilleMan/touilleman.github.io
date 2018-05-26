@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="touilleMan.xyz, Open source & Python lover">
+
+        <link rel="alternate"  href="http://touilleman.xyz/feeds/all.atom.xml" type="application/atom+xml" title="touilleMan.xyz Full Atom Feed"/>
+
+        <title>Learning async programming the hard way // touilleMan.xyz // Open source & Python lover</title>
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://touilleman.xyz/theme/css/pure.css">
+    <link rel="stylesheet" href="http://touilleman.xyz/theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <div class="cover-img" style="background: none repeat scroll 0% 0% #3D4F5D">
+                <div class="cover-body">
+                    <header class="header">
+                        <hgroup>
+                            <img class="avatar" src="/extra/touilleman.jpeg">
+                            <h1 class="brand-main"><a href="http://touilleman.xyz">touilleMan.xyz</a></h1>
+                            <p class="tagline">Open source & Python lover</p>
+                                <p class="links"><a href="/about">About</a></p>
+                                <p class="links"><a href="/category/python.html">Python</a></p>
+                                <p class="links"><a href="/category/misc.html">Misc</a></p>
+                                <p class="social">
+                                    <a href="https://twitter.com/touilleMan">
+                                        <i class="fa fa-twitter fa-3x"></i>
+                                    </a>
+                                    <a href="https://github.com/touilleMan">
+                                        <i class="fa fa-github fa-3x"></i>
+                                    </a>
+                                    <a href="http://touilleman.xyz/feeds/all.atom.xml">
+                                        <i class="fa fa-rss fa-3x"></i>
+                                    </a>
+                                </p>
+                        </hgroup>
+                    </header>
+                </div>
+            </div>
+        </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Learning async programming the hard way</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="http://touilleman.xyz/tag/python.html">python</a>
+                        </p>
+                </header>
+            </section>
+            <p>This weekend, I noticed diesel.io is no longer reachable. I guess it's time to
+organize the funerals of this project.</p>
+<p>First a word about the dead from it <a href="https://pypi.python.org/pypi/diesel/3.0.24">pypi page</a>:</p>
+<blockquote>
+<p>diesel is a framework for easily writing reliable and scalable network applications in Python. It uses the greenlet library layered atop asynchronous socket I/O in Python to achieve benefits of both the threaded-style (linear, blocking-ish code flow) and evented-style (no locking, low overhead per connection) concurrency paradigms. It’s design is heavily inspired by the Erlang/OTP platform.</p>
+</blockquote>
+<p><a href="https://www.reddit.com/r/programming/comments/9ndev/announcing_diesel_async_io_in_python_for_the_rest/?">Announced in 2010</a>,
+the project was well received (+500 stars on github) but eventually failed
+to make it hole in the crowded world of Python async frameworks.</p>
+<p>In late 2013, <a href="http://bu.mp/">Bump</a>, the company that developed diesel for it
+own needs, was bought by Google, it products discontinued and team merged.</p>
+<p>This put a neat stop to the project, which entered in hibernation:
+<img alt="diesel's contributions" src="http://touilleman.xyz/blog/diesel_contributions.png"></p>
+<p>It's only a year later I got interested by the project.</p>
+<p><em>Why? Maybe it's because
+I've always had a weakness for lost causes</em> (to
+<a href="http://www.imdb.com/title/tt0031381/quotes?item=qt1145061">paraphrase Rhett Buttler</a>).</p>
+<p>What really caught my eye was diesel offers an implementation of Flask and it
+it ecosystem (let aside the extensions making use of the network which
+blocking nature couldn't play nice in an async framework).</p>
+<p>The drawback, however, was diesel was Python 2 only and, as I stated earlier,
+it community was sparse if not vanished.</p>
+<p>Given I was having some free time (that's the reason I start researching about
+async frameworks in the first place) I choose the hard way: porting the project
+to Python 3 !</p>
+<p>Who knows ? Maybe seeing someone investing time into there project could
+re-motivate it creators, and with some posts&amp;benchmarks on reddit we could
+even bring new people in...</p>
+<p>Dowski, the maintainer of the project,
+<a href="https://github.com/dieseldev/diesel/issues/97">was really friendly and helpful</a>
+and shared my hopes on the project. So I started working on the port, and
+a month later the <a href="https://github.com/dieseldev/diesel/pull/100">work was done</a>.</p>
+<p>However my attempt to shake the sleeping giant turned short: too few free time,
+missing motivation and Diesel4 (the new major version with Python 3 support)
+didn't get released on pypi, in fact it didn't even make it way to the master :'-(</p>
+<p>Put this way, this seems harsh: I worked hard and no-one will ever use my work
+(not even me !). But in fact it's all the opposite !</p>
+<p>One of the biggest grieve Armin Ronacher gave to Python3 is the str/bytes separation
+which make <a href="http://lucumr.pocoo.org/2010/5/25/wsgi-on-python-3/">porting low level code pretty hard</a>.
+Well diesel was full of such things (protocols, transport, socket communication etc.)
+so porting the code was far more than just a 2to3 pass, I actually had to
+read and understand all the code !</p>
+<p>This project gave me the opportunity to go deep into async programming,
+to understand the <a href="https://en.wikipedia.org/wiki/Reactor_pattern">reactor pattern</a>
+and <a href="https://github.com/dieseldev/diesel/blob/diesel4/diesel/core.py">hack into an implementation of it</a>,
+to discover <a href="https://greenlet.readthedocs.io/en/latest/">greenlet</a>,
+to play with the <a href="https://github.com/dieseldev/diesel/blob/diesel4/diesel/protocols/redis.py">redis</a>
+and <a href="https://github.com/dieseldev/diesel/blob/diesel4/diesel/protocols/mongodb.py">mongodb</a>
+protocols, and to discover someone finally did something to replace the
+<a href="https://github.com/wearpants/twiggy">awful logging module</a>.</p>
+<p>With <a href="https://docs.python.org/3/library/asyncio.html">asyncio</a> raising as
+the new unified standard for async programming in Python, diesel is damn
+no matter what. So it's time to move on let it rest in peace, but I would
+suggest you anyway <a href="https://github.com/dieseldev/diesel/tree/diesel4">to go pay your respects to it</a>,
+may it code teaches you as much as it did to me.</p>
+<p><br/></p>
+<p>PS: After 2 years of inactivity,
+<a href="http://blog.dowski.com/2015/12/01/making-things/">Dowski's blog</a> got a new
+entry:</p>
+<blockquote>
+<p>
+ I think it's time to make things again.
+</p>
+<footer>Dowski</footer>
+</blockquote>
+
+<p>Is it really the end of diesel ?</p>
+            <a href="#" class="go-top">Go Top</a>
+    <div class="comments">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = "touilleman"; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+<footer class="footer">
+    <p>&copy; Emmanuel Leblond &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure-single">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+    </div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-42073732-2");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+
+</body>
+</html>

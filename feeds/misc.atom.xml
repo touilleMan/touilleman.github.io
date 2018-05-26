@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>touilleMan.xyz - Misc</title><link href="http://touilleman.xyz/" rel="alternate"></link><link href="http://touilleman.xyz/feeds/misc.atom.xml" rel="self"></link><id>http://touilleman.xyz/</id><updated>2016-06-09T00:00:00+02:00</updated><entry><title>The meta article - Warmup with lektor</title><link href="http://touilleman.xyz/blog/the-meta-article" rel="alternate"></link><published>2016-06-09T00:00:00+02:00</published><updated>2016-06-09T00:00:00+02:00</updated><author><name>Emmanuel Leblond</name></author><id>tag:touilleman.xyz,2016-06-09:/blog/the-meta-article</id><summary type="html">&lt;p&gt;This blog aims at writting about my experiences in programming, so what better
+start but to talk about my experience building this blog !&lt;/p&gt;
+&lt;p&gt;First and foremost, &lt;em&gt;&lt;a href="https://github.com/touilleMan/touilleman.xyz"&gt;show me the code&lt;/a&gt;&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Hearing about Armin "flask" Ronacher's
+&lt;a href="https://twitter.com/mitsuhiko/status/678963561285177344"&gt;new project&lt;/a&gt;,
+I figured out lektor was exactly the tool I was looking for.
+Beside …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This blog aims at writting about my experiences in programming, so what better
+start but to talk about my experience building this blog !&lt;/p&gt;
+&lt;p&gt;First and foremost, &lt;em&gt;&lt;a href="https://github.com/touilleMan/touilleman.xyz"&gt;show me the code&lt;/a&gt;&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Hearing about Armin "flask" Ronacher's
+&lt;a href="https://twitter.com/mitsuhiko/status/678963561285177344"&gt;new project&lt;/a&gt;,
+I figured out lektor was exactly the tool I was looking for.
+Beside a young project means &lt;a href="https://github.com/lektor/lektor/pull/222"&gt;opportunities&lt;/a&gt;
+&lt;a href="https://github.com/lektor/lektor-markdown-highlighter/issues/2"&gt;to&lt;/a&gt;
+&lt;a href="https://github.com/lektor/lektor-website/issues/101"&gt;contribute&lt;/a&gt;,
+adding your little rocks to the growing mountain is so much rewarding ;-)&lt;/p&gt;
+&lt;p&gt;Working with lektor feels like flask: you get the concept in a glimpse,
+have a working poc in minutes but thanks to it great architecture
+there is plugins for basically all your needs.&lt;/p&gt;
+&lt;p&gt;I have to say this is &lt;em&gt;really&lt;/em&gt; impressing for such a young project !&lt;/p&gt;
+&lt;p&gt;Now for (literally) the big picture:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="you are somewhere here" src="http://touilleman.xyz/blog/blog_schema.png"&gt;&lt;/p&gt;
+&lt;p&gt;This is a pretty classic workflow, a few comments though:&lt;/p&gt;
+&lt;p&gt;lektor provides &lt;a href="https://www.getlektor.com/docs/deployment/"&gt;plenty ways to deploy&lt;/a&gt;,
+my choice was... none !
+Armin &lt;a href="http://lucumr.pocoo.org/2015/12/21/introducing-lektor/"&gt;presented lektor&lt;/a&gt;
+as a way for him to handle his parents' blog without suffering too much.
+Basically he (as the "tech guy") had to configure at first the project (how to
+deploy, the css etc.) then he can hand it to his parents who will be able to
+create&amp;amp;update posts and deploy inside a CMS gui (the dev lektor server running on
+their own computer). Furthermore, they could just throw the lektor project folder
+inside their Dropbox and to get their blog saved without hassles !&lt;/p&gt;
+&lt;p&gt;This is an awesome workflow for non-technical people, but as someone who use
+git everyday I want to be able to write an article in a branch, then merge it
+to the master and finally have my blog updated once the code is pushed on github...&lt;/p&gt;
+&lt;p&gt;...wich leads us to &lt;a href="https://travis-ci.org"&gt;Travis&lt;/a&gt;. I love the way you can
+store secret inside the &lt;code&gt;.travis.yml&lt;/code&gt;.
+Travis creates a gpg key for each project and uses it to crypt your data. Of
+course only trusted build have access to those data to prevent someone sending
+you a PR with &lt;code&gt;echo $MY_SECRET_VAR&lt;/code&gt; to steal your stuff !&lt;/p&gt;
+&lt;p&gt;Considering the hosting, I first thought about &lt;a href="https://pages.github.com/"&gt;github pages&lt;/a&gt;
+but I don't feel comfortable storing my Github credentials within Travis (even
+if I could create a token with limited access, the granularity would allow
+write access to all my public repos...).&lt;/p&gt;
+&lt;p&gt;So I head up to &lt;a href="https://www.netlify.com/"&gt;netlify&lt;/a&gt;, the service seems good,
+they put a little token (can't miss it though !) on the right corner but given
+the storage is free I would call this an exchange of interests ;-)&lt;/p&gt;
+&lt;p&gt;I'm less happy with the fact you must use the netlify command to deploy your
+stuff on their servers, &lt;em&gt;sftp cannot beat the swag of a nodejs bloat with a
+shiny colored cli I guess...&lt;/em&gt;&lt;/p&gt;</content><category term="python"></category><category term="misc"></category></entry></feed>
