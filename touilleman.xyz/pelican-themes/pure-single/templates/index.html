@@ -25,16 +25,16 @@
                     {% endif %}
                     <section class="post">
                         <header class="post-header">
-                            <h3><a class="post-title" href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h3>
+                            <h3><a class="post-title" href="/{{ article.url }}">{{ article.title }}</a></h3>
                             <p class="post-meta">{{ article.summary }}</p>
                         {% if HIDE_CATEGORIES %}
                             <p class="post-meta">// under {% for tag in article.tags %}
-                                <a class="post-category" href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
+                                <a class="post-category" href="/{{ tag.url }}">{{ tag }}</a>
                                 {% endfor %} &middot; {{ article.locale_date }}
                             </p>
                         {% else %}
                             <p class="post-meta">
-                                in <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a> &middot; {{ article.locale_date }}
+                                in <a href="/{{ article.category.url }}">{{ article.category }}</a> &middot; {{ article.locale_date }}
                             </p>
                         {% endif %}
                         </header>

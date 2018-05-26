@@ -9,7 +9,7 @@
             <h1 class="content-subhead">All Categories</h1>
             <ul>
                 {% for category, articles in categories %}
-                    <li><a href="{{ SITEURL }}/{{ category.url }}">{{ category }}</a></li>
+                    <li><a href="/{{ category.url }}">{{ category }}</a></li>
                 {% endfor %}
             </ul>
             {% include 'footer.html' %}

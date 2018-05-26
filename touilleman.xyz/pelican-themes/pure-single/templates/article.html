@@ -3,7 +3,7 @@
 {% block title %}{{ article.title|striptags }} // {{ super() }}{% endblock title %}
 
 {% block head_css %}
-    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pygments.css">
+    <link rel="stylesheet" href="/theme/css/pygments.css">
 {% endblock %}
 
 {% block head_js %}
@@ -29,7 +29,7 @@
                     <h1>{{ article.title }}</h1>
                         <p class="post-meta">
                             // under {% for tag in article.tags %}
-                                <a class="post-category" href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
+                                <a class="post-category" href="/{{ tag.url }}">{{ tag }}</a>
                             {% endfor %}
                         </p>
                 </header>

@@ -53,7 +53,7 @@ MENUITEMS = (
 SOCIAL = (
     ('twitter', 'https://twitter.com/touilleMan'),
     ('github', 'https://github.com/touilleMan'),
-    ('rss', 'http://touilleman.xyz/feeds/all.atom.xml'))
+    ('rss', '/feeds/all.atom.xml'))
 
 DEFAULT_PAGINATION = 10
 

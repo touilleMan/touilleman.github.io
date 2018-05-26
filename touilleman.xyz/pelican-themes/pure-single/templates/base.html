@@ -28,7 +28,7 @@
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pure.css">
+    <link rel="stylesheet" href="/theme/css/pure.css">
     {% block head_css %}{% endblock %}
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -49,14 +49,14 @@
                             {% if PROFILE_IMG_URL %}
                             <img class="avatar" src="{{ PROFILE_IMG_URL }}">
                             {% endif %}
-                            <h1 class="brand-main"><a href="{{ SITEURL }}">{{ SITENAME }}</a></h1>
+                            <h1 class="brand-main"><a href="/">{{ SITENAME }}</a></h1>
                             <p class="tagline">{{ TAGLINE }}</p>
                             {% for title, link in MENUITEMS %}
                                 <p class="links"><a href="{{ link }}">{{ title }}</a></p>
                             {% endfor %}
                             {% if DISPLAY_PAGES_ON_MENU %}
                             {% for page in PAGES %}
-                                <p class="links"><a href="{{ SITEURL }}/pages/{{ page.slug }}">{{ page.title }}</a></p>
+                                <p class="links"><a href="/pages/{{ page.slug }}">{{ page.title }}</a></p>
                             {% endfor %}
                             {% endif %}
                                 <p class="social">

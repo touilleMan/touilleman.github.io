@@ -11,7 +11,7 @@
       <ul>
 
         {% for author, articles in authors|sort %}
-          <li><a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a></li>
+          <li><a href="/{{ author.url }}">{{ author }}</a></li>
         {% endfor %}
         {% include 'footer.html' %}
 
