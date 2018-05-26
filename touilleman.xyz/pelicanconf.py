@@ -19,7 +19,8 @@ STATIC_PATHS = ['blog', 'extra']
 EXTRA_PATH_METADATA = {
     'extra/_redirects': {'path': '_redirects'},
     'extra/keybase.txt': {'path': 'keybase.txt'},
-    'extra/favicon.ico': {'path': 'favicon.ico'}
+    'extra/favicon.ico': {'path': 'favicon.ico'},
+    'extra/CNAME': {'path': 'CNAME'},
 }
 ARTICLE_PATHS = ['blog']
 ARTICLE_URL = 'blog/{slug}'
