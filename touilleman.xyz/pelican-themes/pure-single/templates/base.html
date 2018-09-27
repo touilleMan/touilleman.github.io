@@ -27,11 +27,15 @@
     {% endif %}
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    {% if WITH_FONT_AWESOME %}
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    {% endif %}
     <link rel="stylesheet" href="/theme/css/pure.css">
     {% block head_css %}{% endblock %}
 
+    {% if WITH_JQUERY %}
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    {% endif %}
     {% block head_js %}{% endblock %}
 </head>
 
@@ -74,6 +78,7 @@
         {% block content %}
         {% endblock %}
     </div>
+    {% if WITH_JQUERY %}
     <script>
         var $top = $('.go-top');
 
@@ -98,6 +103,7 @@
             event.preventDefault();
         });
     </script>
+    {% endif %}
     {% include 'analytics.html' %}
 </body>
 </html>

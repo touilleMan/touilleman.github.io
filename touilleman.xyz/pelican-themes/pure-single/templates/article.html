@@ -7,12 +7,14 @@
 {% endblock %}
 
 {% block head_js %}
+    {% if WITH_JQUERY %}
     <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
     <script>
         $(document).ready(function(){
             $(".content").fitVids();
         });
     </script>
+    {% endif %}
     {% if article and article.latex %}
         {{ article.latex }}
     {% endif %}

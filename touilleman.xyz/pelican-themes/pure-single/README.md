@@ -6,6 +6,8 @@ Theme is responsive.
 
 ## PELICANCONF.PY
 
+* `WITH_JQUERY` - Enable JQuery extensions
+* `WITH_FONT_AWESOME` - Enable font awesome
 * `COVER_IMG_URL` - Set the sidebar image (Optional).
 * `PROFILE_IMG_URL` - Set the image for the top circle cutout.
 * `TAGLINE` - Used for the page titles and some meta tags.

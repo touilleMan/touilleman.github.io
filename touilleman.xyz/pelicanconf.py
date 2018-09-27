@@ -14,12 +14,14 @@ TAGLINE = 'Open source & Python lover'
 THEME = "pelican-themes/pure-single"
 PROFILE_IMG_URL = '/extra/touilleman.jpeg'
 # COVER_IMG_URL = ''
+WITH_JQUERY = False
+WITH_FONT_AWESOME = False
 PATH = 'content'
 STATIC_PATHS = ['blog', 'extra']
+FAVICON_URL = '/extra/touilleman.jpeg'
 EXTRA_PATH_METADATA = {
     'extra/_redirects': {'path': '_redirects'},
     'extra/keybase.txt': {'path': 'keybase.txt'},
-    'extra/favicon.ico': {'path': 'favicon.ico'},
     'extra/CNAME': {'path': 'CNAME'},
 }
 ARTICLE_PATHS = ['blog']
